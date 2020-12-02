@@ -10,7 +10,15 @@ public class Exercises {
 	 sleepIn(false, true) → true
 	 */
 	public boolean sleepIn(boolean weekday, boolean vacation) {
-		return false;
+		if(weekday == false && vacation == false) {
+		return true;
+		} else if (weekday == true && vacation == false) {
+			return false;
+		} else {
+			return true;
+		}
+		
+		
 	}
 
 	/*
@@ -22,9 +30,14 @@ public class Exercises {
 	 monkeyTrouble(true, false) → false
 	 */
 	public boolean monkeyTrouble(boolean aSmile, boolean bSmile) {
-		return false;
-	}
+		if(aSmile == true && bSmile == true) {
+			return true;
+		} else if(aSmile == false && bSmile == false) {
+			return true;
+		} else
+			return false;}
 
+	
 	/*
 	 3. Given two int values, return their sum. Unless the two values are the same, then return double their sum.
 	 sumDouble(1, 2) → 3
@@ -32,8 +45,11 @@ public class Exercises {
 	 sumDouble(2, 2) → 8
 	 */
 	public int sumDouble(int a, int b) {
-		return 0;
-	}
+		if(a != b) {
+			return a + b;
+		}
+		return 2*(a + b);}
+	
 
 	/*
 	 4. Given an int n, return the absolute difference between n and 21, except return double the absolute
@@ -45,9 +61,12 @@ public class Exercises {
 	 diff21(-10) → 31
 	 */
 	public int diff21(int n) {
-		return 0;
+		if(n <= 21) {
+		return (21 - n);
+	}else {
+		return 2*(n - 21);
 	}
-
+	}
 	/*
 	 5. We have a loud talking parrot. The "hour" parameter is the current hour time in the range 0..23.
 	 We are in trouble if the parrot is talking and the hour is before 7 or after 20. Return true if
@@ -57,8 +76,12 @@ public class Exercises {
 	 parrotTrouble(false, 6) → false
 	 */
 	public boolean parrotTrouble(boolean talking, int hour) {
-		return false;
-	}
+		if(hour < 7 && talking == true) {
+		return true;
+	} else if(hour > 20 && talking == true) {
+		return true;
+	}  return false;
+}
 
 	/*
 	 6. Given 2 ints, a and b, return true if one if them is 10 or if their sum is 10.
@@ -67,9 +90,12 @@ public class Exercises {
 	 makes10(1, 9) → true
 	 */
 	public boolean makes10(int a, int b) {
+		if (a == 10 || b == 10 || a + b == 10) {
+			return true;}
+		{
 		return false;
 	}
-
+}
 	/*
 	 7. Given 2 int values, return true if one is negative and one is positive. Except if the parameter
 	 "negative" is true, then return true only if both are negative.
@@ -78,8 +104,12 @@ public class Exercises {
 	 posNeg(-4, -5, true) → true
 	 */
 	public boolean posNeg(int a, int b, boolean negative) {
-		return false;
-	}
+		if(a < 0 ^ b < 0 && negative == false) {
+		return true;}
+	else if(a < 0 && b < 0 && negative == true) {
+		return true;
+	}  return false;
+}
 
 	/*
 	 8. Return true if the given non-negative number is a multiple of 3 or a multiple of 5.
@@ -89,18 +119,26 @@ public class Exercises {
 	 or35(8) → false
 	 */
 	public boolean or35(int n) {
-		return false;
+		if(n > 0 && n % 3 == 0) {
+		return true;
+	} else if(n > 0 && n % 5 == 0) {
+		return true;
+	}  return false;
 	}
-
 	/*
 	 9. Given two temperatures, return true if one is less than 0 and the other is greater than 100.
 	 icyHot(120, -1) → true
 	 icyHot(-1, 120) → true
 	 icyHot(2, 120) → false
 	 */
-	public boolean icyHot(int temp1, int temp2) {
-		return false;
+	public boolean icyHot(int temp1, int temp2) { 
+	if(temp1 < 0 && temp2 > 100) {
+		return true;
+	} else if(temp1 > 100 && temp2 < 0){
+		return true;}
+	{ return false;}
 	}
+
 
 	/*
 	 10. Given 2 int values, return true if either of them is in the range 10..20 inclusive.
@@ -108,8 +146,11 @@ public class Exercises {
 	 in1020(21, 12) → true
 	 in1020(8, 99) → false
 	 */
-	public boolean in1020(int a, int b) {
-		return false;
+	public boolean in1020(int a, int b)	{
+		boolean aInRange = a > 10 && a < 20;
+		boolean bInRange = b > 10 && b < 20;
+				
+		return aInRange || bInRange; 
 	}
 
 	/*
@@ -120,7 +161,11 @@ public class Exercises {
 	 hasTeen(20, 10, 13) → true
 	 */
 	public boolean hasTeen(int a, int b, int c) {
-		return false;
+		boolean aRange = a >= 13 && a <=19;
+		boolean bRange = b >= 13 && b <=19;
+		boolean cRange = c >= 13 && c <=19;
+		
+		return aRange || bRange || cRange;
 	}
 
 	/*
@@ -131,7 +176,10 @@ public class Exercises {
 	 loneTeen(13, 13) → false
 	 */
 	public boolean loneTeen(int a, int b) {
-		return false;
+		boolean aTeen = a >= 13 && a <=19;
+		boolean bTeen = b >= 13 && b <=19;
+
+		return aTeen ^ bTeen;
 	}
 
 	/*
@@ -141,7 +189,24 @@ public class Exercises {
 	 intMax(3, 2, 1) → 3
 	 */
 	public int intMax(int a, int b, int c) {
-		return 0;
+		if(a >= b && a >= c) {
+			return a;
+		}else if(b >= a && b >= c) {
+			return b;
+		}{
+			return c;
+		}
+	}
+		
+		
+		
+		
+		
+		
+
+	private void If(boolean b) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	/*
@@ -152,7 +217,11 @@ public class Exercises {
 	 in3050(40, 50) → true
 	 */
 	public boolean in3050(int a, int b) {
-		return false;
+		boolean aThirties = a >= 30 && a <= 40; 
+		boolean bThirties = b >= 30 && b <= 40;  
+		boolean aForties = a >= 40 && a <= 50;
+		boolean bForties = b >= 40 && b <= 50;
+		return (aThirties && bThirties) ^ (aForties && bForties) ;
 	}
 
 	/*
@@ -162,10 +231,28 @@ public class Exercises {
 	 max1020(19, 11) → 19
 	 max1020(11, 9) → 11
 	 */
-	public int max1020(int a, int b) {
+	
+	
+	public int max1020(int a, int b) {	
+		// a is between 10 and 20
+		boolean aInRange = (a >= 10 && a <= 20);
+		// a is between 10 and 20
+		boolean bInRange = ( b >= 10 && b <= 20);
+		// a greater than b 
+		boolean aGreaterThanB = a > b;
+	if(!aInRange && !bInRange) {
 		return 0;
+	}else if(!aInRange) {
+			return b;}
+	else if(!bInRange) {
+		return a;
+	} else if (aGreaterThanB) {
+		return a;
+	} else {
+		return b;
 	}
-
+	}
+	
 	/*
 	 16. When squirrels get together for a party, they like to have cigars. A squirrel party is successful
 	 when the number of cigars is between 40 and 60, inclusive. Unless it is the weekend, in which case
@@ -176,9 +263,15 @@ public class Exercises {
 	 cigarParty(70, true) → true
 	 */
 	public boolean cigarParty(int cigars, boolean isWeekend) {
-		return false;
+	// cigars are between 40 and 60 on weekday
+	boolean weekdayCigars = (cigars >= 40 && cigars <= 60 && isWeekend == false);
+	// cigars are greater than 40 on weekend
+	boolean weekendCigars = (cigars >= 40 && isWeekend == true);
+	return weekdayCigars ^ weekendCigars;
 	}
 
+	
+	
 	/*
 	 17. You and your date are trying to get a table at a restaurant. The parameter "you" is the stylishness
 	 of your clothes, in the range 0..10, and "date" is the stylishness of your date's clothes. The result
@@ -191,7 +284,15 @@ public class Exercises {
 	 dateFashion(5, 5) → 1
 	 */
 	public int dateFashion(int you, int date) {
-		return 0;
+		boolean yesTable = you >= 8 || date >= 8;
+		boolean eatAtHome = you <= 2 || date <= 2;
+				if(eatAtHome) {
+			return 0;
+		}else if(yesTable){
+			return 2;
+		}else{
+			return 1;
+		}
 	}
 
 	/*
@@ -203,6 +304,12 @@ public class Exercises {
 	 squirrelPlay(95, true) → true
 	 */
 	public boolean squirrelPlay(int temp, boolean isSummer) {
+		if(temp >= 60 && temp <= 90 && isSummer == false) {
+			return true;
+		} else if(temp >= 60 && temp <= 100 && isSummer == true) {
+			return true;
+		}	
+		
 		return false;
 	}
 
