@@ -9,10 +9,13 @@ public class Exercises {
 	 firstLast6([6, 1, 2, 3]) → true
 	 firstLast6([13, 6, 1, 2, 3]) → false
 	 */
-	public boolean firstLast6(int[] nums) {
-		return false;
+	public boolean firstLast6(int[] nums){
+		if(nums[0] == 6 || nums[nums.length-1] == 6) {
+		
+		return true;
 	}
-
+		return false;
+}
 	/*
 	 2. Given an array of ints, return true if the array is length 1 or more, and the first element and
 	 the last element are equal.
@@ -21,15 +24,19 @@ public class Exercises {
 	 sameFirstLast([1, 2, 1]) → true
 	 */
 	public boolean sameFirstLast(int[] nums) {
+		if(nums[nums.length]>0 && nums[0]== nums[nums.length]) {
+			return true;
+		}{
+				
 		return false;
 	}
-
+	}
 	/*
 	 3. Return an int array length 3 containing the first 3 digits of pi, {3, 1, 4}.
 	 makePi() → [3, 1, 4]
 	 */
 	public int[] makePi() {
-		return new int[] {};
+		return new int[] {3,1,4};
 	}
 
 	/*
@@ -40,9 +47,12 @@ public class Exercises {
 	 commonEnd([1, 2, 3], [1, 3]) → true
 	 */
 	public boolean commonEnd(int[] a, int[] b) {
+		if(a[0] == b[0] || a[a.length-1]  == b[b.length -1]) {
+		return true;
+	}{
 		return false;
 	}
-
+	}
 	/*
 	 5. Given an array of ints length 3, return the sum of all the elements.
 	 sum3([1, 2, 3]) → 6
@@ -50,7 +60,7 @@ public class Exercises {
 	 sum3([7, 0, 0]) → 7
 	 */
 	public int sum3(int[] nums) {
-		return 0;
+		return nums[0] + nums[1] + nums[3];
 	}
 
 	/*
@@ -61,7 +71,7 @@ public class Exercises {
 	 rotateLeft3([7, 0, 0]) → [0, 0, 7]
 	 */
 	public int[] rotateLeft3(int[] nums) {
-		return new int[] {};
+		return new int[] {nums[1],nums[2],nums[0]};
 	}
 
 	/*
@@ -72,7 +82,7 @@ public class Exercises {
 	 reverse3([7, 0, 0]) → [0, 0, 7]
 	 */
 	public int[] reverse3(int[] nums) {
-		return new int[] {};
+		return new int[] {nums[2],nums[1],nums[3]};
 	}
 
 	/*
