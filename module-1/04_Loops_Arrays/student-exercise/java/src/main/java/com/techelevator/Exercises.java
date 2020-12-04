@@ -23,7 +23,7 @@ public class Exercises {
 	 * true
 	 */
 	public boolean sameFirstLast(int[] nums) {
-		if (nums[nums.length] >= 0 && nums[0] == nums[nums.length]) {
+		if (nums[nums.length-1] >= 0 && nums[0] == nums[nums.length-1]) {
 			return true;
 		}
 		{
@@ -169,7 +169,7 @@ public class Exercises {
 	 * 1, 2]) → false
 	 */
 	public boolean has22(int[] nums) {	
-		for (int i = 0; i < nums.length; i++) {
+		for (int i = 0; i < nums.length -1; i++) {
 			if(nums[i] == 2 && nums[i + 1] == 2) {
 				return true;
 			}
@@ -186,7 +186,8 @@ public class Exercises {
 		for (int i = 0; i < nums.length; i++)
 		if(nums[i] == 1 || nums[i] == 3) {
 			return false;
-		} return true;
+		} {return true;
+	}
 	}
 
 	/*
@@ -195,7 +196,13 @@ public class Exercises {
 	 * 2, 2]) → false sum28([1, 2, 3, 4]) → false
 	 */
 	public boolean sum28(int[] nums) {
-		return false;
-	}
+		int twoMakes8 = 0;
+		for (int i = 0; i < nums.length; i++) {
+		if(nums[i] == 2) {
+			twoMakes8 += 2;
+		}
+		}
+		return twoMakes8 == 8;
+	}}
 
-}
+
