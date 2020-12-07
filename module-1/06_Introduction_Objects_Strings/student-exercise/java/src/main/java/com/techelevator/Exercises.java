@@ -9,8 +9,8 @@ public class Exercises {
 	 helloName("X") → "Hello X!"
 	 */
 	public String helloName(String name) {
-		return null;
-	}
+		return "Hello " + name + "!";
+	} 
 
 	/*
 	 Given two strings, a and b, return the result of putting them together in the order abba,
@@ -20,7 +20,7 @@ public class Exercises {
 	 makeAbba("What", "Up") → "WhatUpUpWhat"
 	 */
 	public String makeAbba(String a, String b) {
-		return null;
+		return a + b + b + a;
 	}
 
 	/*
@@ -32,7 +32,7 @@ public class Exercises {
 	 makeTags("cite", "Yay") → "<cite>Yay</cite>"
 	 */
 	public String makeTags(String tag, String word) {
-		return null;
+		return "<" + tag + ">" + word + "</" + tag + ">";
 	}
 
 	/*
@@ -44,7 +44,8 @@ public class Exercises {
 	 makeOutWord("[[]]", "word") → "[[word]]"
 	 */
 	public String makeOutWord(String out, String word) {
-		return null;
+		return out.substring(0,2) + word  + out.substring(2,4);
+		
 	}
 
 	/*
@@ -55,10 +56,14 @@ public class Exercises {
 	 extraEnd("Hi") → "HiHiHi"
 	 */
 	public String extraEnd(String str) {
-		return null;
+		String lastTwo = str.substring(str.length()-2);
+		return lastTwo + lastTwo + lastTwo;
+		//return str.substring(-2,-1) + str.substring(-2,-1) + str.substring(-2,-1);
+		// this is how i did it, about is how Andrew recommended
 	}
+	
 
-	/*
+	/* *
 	 Given a string, return the string made of its first two chars, so the String "Hello" yields "He". If the
 	 string is shorter than length 2, return whatever there is, so "X" yields "X", and the empty string ""
 	 yields the empty string "". Note that str.length() returns the length of a string.
@@ -67,8 +72,16 @@ public class Exercises {
 	 firstTwo("ab") → "ab"
 	 */
 	public String firstTwo(String str) {
-		return null;
-	}
+		if((str.length())>=2) {
+			return str.substring(0,2);
+		}
+		else if((str.length())<2) {
+			return str.substring(0);}
+		else {
+			return " ";
+		}
+		
+}
 
 	/*
 	 Given a string of even length, return the first half. So the string "WooHoo" yields "Woo".
@@ -77,7 +90,8 @@ public class Exercises {
 	 firstHalf("abcdef") → "abc"
 	 */
 	public String firstHalf(String str) {
-		return null;
+		
+		return str.substring(0,str.length()/2);
 	}
 
 	/*
@@ -88,7 +102,7 @@ public class Exercises {
 	 withoutEnd("coding") → "odin"
 	 */
 	public String withoutEnd(String str) {
-		return null;
+		return str.substring(1,str.length()-1);
 	}
 
 	/*
@@ -100,9 +114,10 @@ public class Exercises {
 	 comboString("aaa", "b") → "baaab"
 	 */
 	public String comboString(String a, String b) {
-		return null;
+		if(a.length() < b.length()) {
+		return a + b + a;
+	} return b + a + b;
 	}
-
 	/*
 	 Given 2 strings, return their concatenation, except omit the first char of each. The strings will
 	 be at least length 1.
@@ -111,7 +126,7 @@ public class Exercises {
 	 nonStart("shotl", "java") → "hotlava"
 	 */
 	public String nonStart(String a, String b) {
-		return null;
+		return a.substring(1,a.length()) + b.substring(1,b.length());
 	}
 
 	/*
@@ -122,7 +137,7 @@ public class Exercises {
 	 left2("Hi") → "Hi"
 	 */
 	public String left2(String str) {
-		return null;
+		return str.substring(1,str.length())+str.substring(0,2);
 	}
 
 	/*
@@ -133,7 +148,7 @@ public class Exercises {
 	 right2("Hi") → "Hi"
 	 */
 	public String right2(String str) {
-		return null;
+		return str.substring((str.length())-2, str.length()) + str.substring(0,str.length()-2);
 	}
 
 	/*
@@ -144,7 +159,11 @@ public class Exercises {
 	 theEnd("oh", true) → "o"
 	 */
 	public String theEnd(String str, boolean front) {
-		return null;
+		if(front == true) {
+		return str.substring(0,1);}
+		else {
+			return str.substring(str.length()-1, str.length());
+		}
 	}
 
 	/*
@@ -154,8 +173,12 @@ public class Exercises {
 	 withoutEnd2("abc") → "b"
 	 withoutEnd2("ab") → ""
 	 */
-	public String withoutEnd2(String str) {
-		return null;
+	public String withoutEnd2(String str) 
+	{if(str.length() <= 1) {
+		return "";
+	}
+		
+		return str.substring(1,str.length()-1);
 	}
 
 	/*
@@ -166,7 +189,7 @@ public class Exercises {
 	 middleTwo("Practice") → "ct"
 	 */
 	public String middleTwo(String str) {
-		return null;
+		return str.substring(((str.length())/2)-1,(str.length()/2)+1 ) ;
 	}
 
 	/*
@@ -176,8 +199,13 @@ public class Exercises {
 	 endsLy("oddy") → false
 	 */
 	public boolean endsLy(String str) {
-		return false;
-	}
+		int length = str.length();
+		return(length>=2)&&str.substring(length-2,length).contentEquals("ly");
+		
+			
+		}
+				
+	
 
 	/*
 	 Given a string and an int n, return a string made of the first and last n chars from the string. The
@@ -187,9 +215,9 @@ public class Exercises {
 	 nTwice("Chocolate", 1) → "Ce"
 	 */
 	public String nTwice(String str, int n) {
-		return null;
-	}
-
+	
+		return (str.substring(0,n)+ (str.substring(str.length()-n,str.length())));
+	} 
 	/*
 	 Given a string and an index, return a string length 2 starting at the given index. If the index is
 	 too big or too small to define a string length 2, use the first 2 chars. The string length will be
@@ -199,7 +227,9 @@ public class Exercises {
 	 twoChar("java", 3) → "ja"
 	 */
 	public String twoChar(String str, int index) {
-		return null;
+		if(index + 2 > str.length()|| index<0) {
+		return str.substring(0,2);}
+		return str.substring(index,index+2);
 	}
 
 	/*

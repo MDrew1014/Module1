@@ -8,10 +8,10 @@ public class DecimalToBinary {
 		 Scanner scanner = new Scanner(System.in);
 		int decimal, quot, i=1, j;
         int binary[] = new int[100];
-        Scanner scan = new Scanner(System.in);
+        
 		
         System.out.print("Please enter in a series of decimal values (separated by spaces):");
-        decimal = scan.nextInt();
+        decimal = scanner.nextInt();
 		
         quot = decimal;
 		
