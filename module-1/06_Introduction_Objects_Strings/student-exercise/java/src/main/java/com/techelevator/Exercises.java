@@ -240,7 +240,7 @@ public class Exercises {
 	 middleThree("solving") → "lvi"
 	 */
 	public String middleThree(String str) {
-		return null;
+		return str.substring(str.length() / 2 - 1, str.length() / 2 + 2);
 	}
 
 	/*
@@ -252,9 +252,15 @@ public class Exercises {
 	 hasBad("xxbadxx") → false
 	 */
 	public boolean hasBad(String str) {
-		return false;
+		if(str.length()<3) {
+			return false; }
+		else if(str.substring(0,3).equals("bad")) {
+			return true;}
+		 else if (str.length()>3) {
+			if((str.substring(1,4).contentEquals("bad"))) 
+		return true;
+	}return false;
 	}
-
 	/*
 	 Given a string and a non-negative int n, return a larger string that is n copies of the original string.
 	 stringTimes("Hi", 2) → "HiHi"
@@ -262,8 +268,13 @@ public class Exercises {
 	 stringTimes("Hi", 1) → "Hi"
 	 */
 	public String stringTimes(String str, int n) {
-		return null;
-	}
+		String result = "";
+		for (int i = 0; i < n; i++) {
+            result += str;
+        }
+        return result;
+    }
+	
 
 	/*
 	 Given a string and a non-negative int n, we'll say that the front of the string is the first 3 chars, or
@@ -273,7 +284,8 @@ public class Exercises {
 	 frontTimes("Abc", 3) → "AbcAbcAbc"
 	 */
 	public String frontTimes(String str, int n) {
-		return null;
+		
+        return null;
 	}
 
 	/*
@@ -283,9 +295,14 @@ public class Exercises {
 	 countXX("xxxx") →
 	 */
 	public int countXX(String str) {
-		return 0;
-	}
+		int xCount = 0;
+        for (int i = 0; i < str.length() - 1; i++) {
+            if (str.substring(i, i + 2).equals("xx")) xCount++;
+        }
 
+        return xCount;
+    }
+		
 	/*
 	 Given a string, return true if the first instance of "x" in the string is immediately followed by another "x".
 	 doubleX("axxbb") → true
@@ -293,9 +310,12 @@ public class Exercises {
 	 doubleX("xxxxx") → true
 	 */
 	public boolean doubleX(String str) {
+		for (int i = 0; i < str.length() - 1; i++) {
+			if (str.substring(i, i + 2).equals("xx")) {
+			return true;}
+			}
 		return false;
-	}
-
+				}
 	/*
 	 Given a string, return a new string made of every other char starting with the first, so "Hello" yields "Hlo".
 	 stringBits("Hello") → "Hlo"
@@ -303,8 +323,13 @@ public class Exercises {
 	 stringBits("Heeololeo") → "Hello"
 	 */
 	public String stringBits(String str) {
-		return null;
-	}
+		String result = "";
+        for (int i = 0; i < str.length(); i += 2) {
+            result += str.substring(i, i + 1);
+        }
+
+        return result;
+    }
 
 	/*
 	 Given a non-empty string like "Code" return a string like "CCoCodCode".
@@ -313,9 +338,13 @@ public class Exercises {
 	 stringSplosion("ab") → "aab"
 	 */
 	public String stringSplosion(String str) {
-		return null;
-	}
+		String result = "";
+        for (int i = 0; i < str.length(); i ++) {
+            result += str.substring(0, i + 1);
+        }
 
+        return result;
+    }
 	/*
 	 Given a string, return the count of the number of times that a substring length 2 appears in the string and
 	 also as the last 2 chars of the string, so "hixxxhi" yields 1 (we won't count the end substring).
@@ -335,7 +364,9 @@ public class Exercises {
 	 stringX("xabxxxcdx") → "xabcdx"
 	 */
 	public String stringX(String str) {
-		return null;
+		if(str.substring(0,str.length()).equals("x")) {
+			return str;
+		}return "";
 	}
 
 	/*

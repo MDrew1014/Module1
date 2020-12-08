@@ -5,10 +5,7 @@ import java.util.Scanner;
 public class DecimalToBinary {
 
 	public static void main(String[] args) {
-		 Scanner scanner = new Scanner(System.in);
-		int decimal, quot, i=1, j;
-        int binary[] = new int[100];
-        
+		 Scanner scanner = new Scanner(System.in);    
 		
         System.out.print("Please enter in a series of decimal values (separated by spaces):");
         decimal = scanner.nextInt();
