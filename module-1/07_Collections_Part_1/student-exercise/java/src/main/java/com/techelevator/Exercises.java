@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Exercises {
@@ -16,7 +17,14 @@ public class Exercises {
 	 array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"]
 	 */
 	public List<String> array2List(String[] stringArray) {
-		return null;
+		List<String> array2List = new ArrayList<String>();
+		
+		for (String fruit: stringArray){
+			array2List.add(fruit);
+		}
+		
+		
+		return array2List;
 	}
 
 	/*
@@ -26,9 +34,11 @@ public class Exercises {
 	 list2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
 	 */
 	public String[] list2Array(List<String> stringList) {
-		return null;
+		String[] list2Array = stringList.toArray(new String[stringList.size()]);		
+		
+		
+		return list2Array;
 	}
-
 	/*
 	 Given an array of Strings, return an ArrayList containing the same Strings in the same order
 	 except for any words that contain exactly 4 characters.
@@ -37,7 +47,12 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-		return null;
+		List<String> no4LetterWords = new ArrayList<String>();
+		for(String words : stringArray) {
+			if(words.length()!=4) {
+				no4LetterWords.add(words);
+			}
+		}return no4LetterWords;
 	}
 
 	/*
@@ -47,9 +62,18 @@ public class Exercises {
 	 arrayInt2ListDouble( {84, 99, 3285, 13, 877} ) -> [42, 49.5, 1642.5, 6.5, 438.5]
 	 */
 	public List<Double> arrayInt2ListDouble(int[] intArray) {
-		return null;
+		 List<Double> doubleList = new ArrayList<Double>();
+		 for(int i : intArray) {
+			double d = (double)i/2;// dividing the numbers in intArray by 2
+			doubleList.add(d);				// 
+			
+		 }return doubleList;
 	}
 
+		 
+		 
+		 
+		 
 	/*
 	 Given a List of Integers, return the largest value.
 	 findLargest( [11, 200, 43, 84, 9917, 4321, 1, 33333, 8997] ) -> 33333
@@ -57,9 +81,14 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 64362
 	 */
 	public Integer findLargest(List<Integer> integerList) {
-		return null;
-	}
-
+		Collections.sort(integerList);
+		Collections.reverse(integerList);
+		
+	 return integerList.get(0);
+}
+	
+	
+	
 	/*
 	 Given an array of Integers, return a List of Integers containing just the odd values.
 	 oddOnly( {112, 201, 774, 92, 9, 83, 41872} ) -> [201, 9, 83]
@@ -67,7 +96,14 @@ public class Exercises {
 	 oddOnly( {734, 233, 782, 811, 3, 9999} ) -> [233, 811, 3, 9999]
 	 */
 	public List<Integer> oddOnly(Integer[] integerArray) {
-		return null;
+		List<Integer> oddNumbers = new ArrayList<Integer>();
+
+		for (int i = 0; i < integerArray.length; i++) {
+			if (integerArray[i] % 2 == 1) {
+			oddNumbers.add(integerArray[i]);
+			}
+		}
+		return oddNumbers;
 	}
 
 	/*
@@ -78,9 +114,16 @@ public class Exercises {
 	 foundIntTwice( [9, 23, 44, 2, 88, 44], 44) -> true
 	 */
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
-		return false;
+		int count = 0;
+				for(Integer findTwice: integerList) {
+					if(intToFind == findTwice) {
+						count = count + 1;
+					}
+				}
+					if(count >= 2) {
+						return true;
+					}return false;
 	}
-
 	/*
 	 Given an array of Integers, return a List that contains the same Integers (as Strings). Except any multiple of 3
 	should be replaced by the String "Fizz", any multiple of 5 should be replaced by the String "Buzz",
@@ -95,8 +138,29 @@ public class Exercises {
 	 equals "1")
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
-		return null;
+		List<String> buzzFizz = new ArrayList<String>();
+		 for(Integer fizzBuzz: integerArray) {
+			if(fizzBuzz % 3 == 0 && fizzBuzz % 5 == 0) {
+					buzzFizz.add("FizzBuzz");}
+			else if (fizzBuzz % 3 == 0){
+				buzzFizz.add("Fizz");
+			} else if (fizzBuzz % 5 == 0){
+				buzzFizz.add("Buzz");
+			} else {
+				buzzFizz.add(fizzBuzz.toString());
+			}
+		}
+		
+		return buzzFizz;
 	}
+			
+		
+		
+		
+		
+		
+		
+	
 
 	/*
 	 Given two lists of Integers, interleave them beginning with the first element in the first list followed
