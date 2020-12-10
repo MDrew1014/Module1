@@ -3,6 +3,7 @@ package com.techelevator;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class Exercises {
 
 	/*
@@ -34,7 +35,27 @@ public class Exercises {
 	 *
 	 */
 	public String animalGroupName(String animalName) {
-		return null;
+		if(animalName == null) {
+			return "unknown";
+		}
+		
+		Map<String,String> animals = new HashMap<String, String>();
+				
+		animals.put("rhino", "Crash");
+		animals.put("giraffe", "Tower");
+		animals.put("elephant", "Herd");
+		animals.put("lion", "Pride");
+		animals.put("crow", "Murder");
+		animals.put("pigeon", "Kit");
+		animals.put("flamingo", "Pat");
+		animals.put("deer", "Herd");
+		animals.put("dog", "Pack");
+		animals.put("crocodile", "Float");
+		
+		if(!animals.containsKey(animalName.toLowerCase())) {
+			return "unknown";
+		}
+		return animals.get(animalName.toLowerCase());
 	}
 
 	/*
@@ -60,9 +81,24 @@ public class Exercises {
 	 *
 	 */
 	public double isItOnSale(String itemNumber) {
-		return -1.0;
-	}
-
+		if(itemNumber == null || itemNumber =="") {
+			return 0.00;
+		}
+		
+		Map<String,Double> onSale = new HashMap<String,Double>();
+		onSale.put("kitchen4001", 0.20);
+		onSale.put("garage1070", 0.15);
+		onSale.put("livingroom", 0.10);
+		onSale.put("kitchen6073", 0.40);
+		onSale.put("bedroom3434", 0.60);
+		onSale.put("bath0073", 0.15);
+		
+		if(!onSale.containsKey(itemNumber.toLowerCase())) {
+			return 0.00;
+		}
+		return onSale.get(itemNumber.toLowerCase());
+			
+}
 	/*
 	 * Modify and return the given Map as follows: if "Peter" has more than 0 money, transfer half of it to "Paul",
 	 * but only if Paul has less than $10s.
@@ -74,8 +110,26 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul) {
-		return null;
+		int peterMoney = peterPaul.get("Peter");
+		int paulMoney = peterPaul.get("Paul");
+		if(peterMoney > 0 && paulMoney < 1000) {
+			if(peterMoney % 2 != 0) {
+				peterMoney = peterMoney/2;
+				paulMoney = peterMoney + paulMoney;
+				peterMoney++;
+			}else if(peterMoney> 0 && paulMoney < 1000) {
+				peterMoney = peterMoney/2;
+				paulMoney = peterMoney + paulMoney;
+			}else {
+				return peterPaul;
+			}
+		}
+		peterPaul.put("Peter", peterMoney);
+		peterPaul.put("Paul", paulMoney);
+		
+		return peterPaul;
 	}
+	 
 
 	/*
 	 * Modify and return the given Map as follows: if "Peter" has $50 or more, AND "Paul" has $100 or more,
@@ -87,8 +141,24 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> peterPaulPartnership(Map<String, Integer> peterPaul) {
-		return null;
+		int peterMoney = peterPaul.get("Peter");
+		int paulMoney = peterPaul.get("Paul");
+		if (peterMoney >= 5000 && paulMoney >= 10000) {
+			int peterPartnership = peterMoney / 4;
+			peterMoney = peterMoney - peterPartnership;
+			int paulPartnership = paulMoney / 4;
+			paulMoney = paulMoney - paulPartnership;
+			int peterPaulPartner = peterPartnership + paulPartnership;
+			peterPaul.put("Peter", peterMoney);
+			peterPaul.put("Paul", paulMoney);
+			peterPaul.put("PeterPaulPartnership", peterPaulPartner);
+			return peterPaul;
+		} else {
+			return peterPaul;
+		}
 	}
+		
+	
 
 	/*
 	 * Given an array of non-empty Strings, return a Map<String, String> where for every different String in the array,
@@ -99,8 +169,12 @@ public class Exercises {
 	 * beginningAndEnding(["muddy", "good", "moat", "good", "night"]) → {"g": "d", "m": "t", "n": "t"}
 	 */
 	public Map<String, String> beginningAndEnding(String[] words) {
-		return null;
-	}
+		Map<String, String> firstLast = new HashMap<String, String>();
+		for(String strings : words) {
+			firstLast.put(strings.substring(0,1), strings.substring(strings.length()-1));
+		
+	} return firstLast;
+}
 
 	/*
 	 * Given an array of Strings, return a Map<String, Integer> with a key for each different String, with the value the
