@@ -189,7 +189,17 @@ public class Exercises {
 	 *
 	 */
 	public Map<String, Integer> wordCount(String[] words) {
-		return null;
+		Map<String, Integer> counts = new HashMap<>();
+		for(String word : words) {
+			if(counts.containsKey(word)) {
+				int myCount = counts.get(word);
+				myCount++;
+				counts.put(word,myCount);
+			}else {
+				counts.put(word,1);
+			}
+		}
+		return counts;
 	}
 
 	/*
@@ -204,8 +214,21 @@ public class Exercises {
 	 *
 	 */
 	public Map<Integer, Integer> integerCount(int[] ints) {
-		return null;
+		Map<Integer, Integer> counts = new HashMap<>();
+		
+		for (int myInt : ints) {
+			if (counts.containsKey(ints)) {
+				int myCount = counts.get(myInt);
+				myCount++;
+				counts.put(myInt, myCount);
+			} else {
+				counts.put(myInt, 1);
+			}
+		}
+		return counts;
 	}
+		
+	
 
 	/*
 	 * Given an array of Strings, return a Map<String, Boolean> where each different String is a key and value
