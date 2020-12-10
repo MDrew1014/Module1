@@ -213,7 +213,7 @@ public class Exercises {
 	 * intCount([]) → {}
 	 *
 	 */
-	public Map<Integer, Integer> integerCount(int[] ints) {
+	public Map<Integer, Integer> integerCount(int[] ints) {///GET HELP GET HELP
 		Map<Integer, Integer> counts = new HashMap<>();
 		
 		for (int myInt : ints) {
@@ -221,7 +221,7 @@ public class Exercises {
 				int myCount = counts.get(myInt);
 				myCount++;
 				counts.put(myInt, myCount);
-			} else {
+			} else  {
 				counts.put(myInt, 1);
 			}
 		}

@@ -115,14 +115,15 @@ public class Exercises {
 	 */
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
 		int count = 0;
-				for(Integer findTwice: integerList) {
-					if(intToFind == findTwice) {
-						count = count + 1;
-					}
-				}
-					if(count >= 2) {
-						return true;
-					}return false;
+		for (Integer findTwice : integerList) {
+			if (intToFind == findTwice) {
+				count = count + 1;
+			}
+		}
+		if (count >= 2) {
+			return true;
+		}
+		return false;
 	}
 	/*
 	 Given an array of Integers, return a List that contains the same Integers (as Strings). Except any multiple of 3
