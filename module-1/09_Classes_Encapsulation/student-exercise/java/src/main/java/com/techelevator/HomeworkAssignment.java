@@ -6,6 +6,8 @@ public class HomeworkAssignment {
 	private int earnedMarks; // the total correct marks submitter recieved on the assignment
 	private int possibleMarks;// The number of possible marks on the assignment
 	private String submitterName;// The submitter's name for the assignment
+	
+	
 	// Method
 
 	public String getLetterGrade() {

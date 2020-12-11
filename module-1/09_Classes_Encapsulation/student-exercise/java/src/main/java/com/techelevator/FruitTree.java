@@ -8,11 +8,13 @@ public class FruitTree {
 	private  int piecesOfFruitLeft;
 	
 	
-	
+	//constructor
 	public FruitTree(String typeOfFruit,int startingPiecesOfFruit) {
 		this.typeOfFruit = typeOfFruit;
 		this.piecesOfFruitLeft = startingPiecesOfFruit;
 	}
+	
+	//Method
 	public boolean pickFruit(int numberOfPiecesToRemove) {
 		if (numberOfPiecesToRemove <= piecesOfFruitLeft){
 			piecesOfFruitLeft -= numberOfPiecesToRemove;
@@ -20,6 +22,8 @@ public class FruitTree {
 		}else{   return false;
 		}
 	}
+	
+	//getters
 	public String getTypeOfFruit() {
 		return typeOfFruit;
 	}
