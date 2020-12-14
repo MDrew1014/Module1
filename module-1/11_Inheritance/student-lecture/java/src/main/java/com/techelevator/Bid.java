@@ -1,5 +1,5 @@
 package com.techelevator;
-
+////immutable class because of no setters
 public class Bid {
 
 	private String bidder;
@@ -17,4 +17,6 @@ public class Bid {
 	public int getBidAmount() {
 		return bidAmount;
 	}
+	
+	
 }
