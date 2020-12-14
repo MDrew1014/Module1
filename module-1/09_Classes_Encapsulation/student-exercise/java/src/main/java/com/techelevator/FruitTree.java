@@ -16,13 +16,14 @@ public class FruitTree {
 	
 	//Method
 	public boolean pickFruit(int numberOfPiecesToRemove) {
-		if (numberOfPiecesToRemove <= piecesOfFruitLeft){
+		if (numberOfPiecesToRemove <= piecesOfFruitLeft) {
 			piecesOfFruitLeft -= numberOfPiecesToRemove;
 			return true;
-		}else{   return false;
+		} else {
+			return false;
 		}
 	}
-	
+
 	//getters
 	public String getTypeOfFruit() {
 		return typeOfFruit;
