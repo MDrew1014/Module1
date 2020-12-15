@@ -27,6 +27,7 @@ public class SecondPriceAuction extends ReserveAuction{
 			int newPrice = secondPrice.getBidAmount() + 1;
 			String winningBidder= this.getHighBid().getBidder();
 		}
+		return secondPrice;
 	}
 	
 	
