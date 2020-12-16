@@ -8,11 +8,12 @@ public class BankCustomer {
 	private String name;
 	private String address;
 	private String phoneNumber;
-	private List<Accountable> accounts = new ArrayList<Accountable>(); 
+	private List<Accountable> accounts = new ArrayList<Accountable>();
+	
 	
 	//method
 	public void addAccount(Accountable newAccount) {
-		
+		accounts.add(newAccount) ;
 	}
 
 	public String getName() {
