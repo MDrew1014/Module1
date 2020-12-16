@@ -13,4 +13,8 @@ public class Pig extends FarmAnimal implements Sellable {
     public BigDecimal getPrice() {
         return price;
     }
+    @Override//use this keyword to have the compiler check for you
+	public String eat() {
+		return "Amble over to the trough and get some slop";
+	}
 }
