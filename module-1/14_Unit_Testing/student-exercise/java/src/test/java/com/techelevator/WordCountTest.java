@@ -42,6 +42,16 @@ public class WordCountTest {
 		 Assert.assertEquals((Integer)1, map.get("b"));
 		 Assert.assertEquals((Integer)1, map.get("a"));
 	}
-	
+	@Test
+	public void empty_String() {
+		//arrange
+		WordCount wordCount = new WordCount();
+		String[] words = {""};
+		//act
+		 Map<String, Integer> map = wordCount.getCount(words);
+		//assert
+		 Assert.assertEquals("You didn't need to add it to the array",(Integer)0, map.get(""));
+		 
+	}
 
 }
