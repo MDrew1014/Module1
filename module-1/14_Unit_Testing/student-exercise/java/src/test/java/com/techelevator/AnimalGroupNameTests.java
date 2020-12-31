@@ -30,7 +30,7 @@ public class AnimalGroupNameTests {
 		
 	}
 	@Test
-	public void animal_Group_Capital_First_Letter() {//Happy path 
+	public void lion_Test() {//Happy path 
 		//Arrange
 		
 		AnimalGroupName animalGroupName = new AnimalGroupName();
@@ -42,7 +42,26 @@ public class AnimalGroupNameTests {
 		
 		//assert
 		Assert.assertEquals(
-				"The animals are not case insensitive", 
+				"Lions are in a pride", 
+				expectedHerd, 
+				actualHerd);
+		
+		
+	}
+	@Test
+	public void animal_Group_Capital_Test() {//Happy path 
+		//Arrange
+		
+		AnimalGroupName animalGroupName = new AnimalGroupName();
+		String expectedHerd = "Tower";
+		
+		String inputAnimal = "GIRAFFE";
+		//Act
+		String actualHerd = animalGroupName.getHerd(inputAnimal);
+		
+		//assert
+		Assert.assertEquals(
+				"Should be case insensitive", 
 				expectedHerd, 
 				actualHerd);
 		

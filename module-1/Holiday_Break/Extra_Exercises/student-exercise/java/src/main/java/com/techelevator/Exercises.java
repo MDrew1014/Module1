@@ -9,9 +9,13 @@ public class Exercises {
 	 arrayCount9([1, 9, 9, 3, 9]) → 3
 	 */
 	public int arrayCount9(int[] nums) {
-		return 0;
-	}
-
+		int count = 0;
+		for(int nine : nums) {
+			if(nine == 9) {
+				count++;
+			}
+	}return count;
+		}
 	/*
 	 2. Given an array of ints, return true if one of the first 4 elements in the array is a 9. The array length may be less than 4.
 	 arrayFront9([1, 2, 9, 3, 4]) → true
@@ -19,9 +23,15 @@ public class Exercises {
 	 arrayFront9([1, 2, 3, 4, 5]) → false
 	 */
 	public boolean arrayFront9(int[] nums) {
-		return false;
-	}
-
+		int count = 0;
+		  for(int i: nums) {
+		    if(count < 4 && i == 9)
+		      return true;
+		    count++;
+		  }
+		  return false;
+		}
+	
 	/*
 	 3. Given an array of ints, return true if .. 1, 2, 3, .. appears in the array somewhere.
 	 array123([1, 1, 2, 3, 1]) → true
@@ -29,9 +39,20 @@ public class Exercises {
 	 array123([1, 1, 2, 1, 2, 3]) → true
 	 */
 	public boolean array123(int[] nums) {
-		return false;
-	}
-
+		int count = 0;
+		for(int i: nums) {
+		    if(i == 1) {
+		    	count++;
+		    }else if(i == 2) {
+		    	count++;
+		    }else if(i ==3) {
+		      return true;
+		    }
+		  }
+		  return false;
+		}
+	
+	
 	/*
 	 4. Given an array of ints, we'll say that a triple is a value appearing 3 times in a row in the array.
 	 Return true if the array does not contain any triples.
@@ -40,8 +61,13 @@ public class Exercises {
 	 noTriples([1, 1, 1, 2, 2, 2, 1]) → false
 	 */
 	public boolean noTriples(int[] nums) {
-		return false;
-	}
+		for(int i = 0; i < nums.length-2; i++){
+			if(nums[i] == nums[i+1] && nums[i+1] == nums[i+2]){
+			return false;
+			}
+			}
+			return true;
+			}
 
 	/*
 	 5. Given an array of ints, return a new array length 2 containing the first and last elements from the
@@ -51,7 +77,7 @@ public class Exercises {
 	 makeEnds([7, 4, 6, 2]) → [7, 2]
 	 */
 	public int[] makeEnds(int[] nums) {
-		return new int[] {};
+		return new int[] {nums[0],nums[nums.length-1]};
 	}
 
 	/*
@@ -61,9 +87,10 @@ public class Exercises {
 	 has23([4, 5]) → false
 	 */
 	public boolean has23(int[] nums) {
-		return false;
+			if(nums[0] ==2 || nums[1] ==2 || nums[0]==3 || nums[1]==3) {
+				return true;
+	} return false;
 	}
-
 	/*
 	 7. Given an int array length 2, return true if it does not contain a 2 or 3.
 	 no23([4, 5]) → true
@@ -71,8 +98,10 @@ public class Exercises {
 	 no23([3, 5]) → false
 	 */
 	public boolean no23(int[] nums) {
-		return false;
-	}
+		if(nums[0] ==2 || nums[1] ==2 || nums[0]==3 || nums[1]==3) {
+			return false;
+} return true;
+}
 
 	/*
 	 8. Given an int array, return a new array with double the length where its last element is the same as the
@@ -83,9 +112,10 @@ public class Exercises {
 	 makeLast([3]) → [0, 3]
 	 */
 	public int[] makeLast(int[] nums) {
-		return new int[] {};
+		int[] arr = new int[2 * nums.length];
+	    arr[arr.length - 1] = nums[nums.length - 1];
+	    return arr;
 	}
-
 	/*
 	 9. Given an int array, return true if the array contains 2 twice, or 3 twice. The array will be length 0, 1, or 2.
 	 double23([2, 2]) → true
@@ -93,8 +123,10 @@ public class Exercises {
 	 double23([2, 3]) → false
 	 */
 	public boolean double23(int[] nums) {
-		return false;
-	}
+		if(nums.length == 2 && (nums[0] ==2 && nums[1] ==2 || nums[0]==3 && nums[1]==3)) {
+			return true;
+} return false;
+}
 
 	/*
 	 10. Given an int array length 3, if there is a 2 in the array immediately followed by a 3, set the 3 element to 0.
@@ -104,7 +136,11 @@ public class Exercises {
 	 fix23([1, 2, 1]) → [1, 2, 1]
 	 */
 	public int[] fix23(int[] nums) {
-		return new int[] {};
+		if(nums[0] ==2 && nums[1]==3) {
+			nums[1]=0;
+		}if(nums[1]==2 && nums[2]==3) {
+			nums[2]=0;
+		}return nums;
 	}
 
 	/*
@@ -114,7 +150,15 @@ public class Exercises {
 	 start1([1, 2], []) → 1
 	 */
 	public int start1(int[] a, int[] b) {
-		return 0;
+		int count = 0;
+		if(a.length!=0) {
+		if(a[0]==1) {
+			count++;
+		}}if(b.length!=0) {
+		if(b[0]==1) {
+			count++;}
+	}
+	return count;
 	}
 
 	/*
@@ -125,7 +169,9 @@ public class Exercises {
 	 biggerTwo([1, 1], [1, 2]) → [1, 2]
 	 */
 	public int[] biggerTwo(int[] a, int[] b) {
-		return new int[] {};
+		if(a[0]+a[1]>=b[0]+b[1]) {
+			return a;
+		}return b;
 	}
 
 	/*
@@ -136,7 +182,8 @@ public class Exercises {
 	 makeMiddle([1, 2]) → [1, 2]
 	 */
 	public int[] makeMiddle(int[] nums) {
-		return new int[] {};
+		
+		return new int[] {nums[nums.length/2 -1], nums[nums.length/2]};
 	}
 
 	/*
@@ -146,7 +193,7 @@ public class Exercises {
 	 plusTwo([9, 2], [3, 4]) → [9, 2, 3, 4]
 	 */
 	public int[] plusTwo(int[] a, int[] b) {
-		return new int[] {};
+		return new int[] {a[0],a[1],b[0],b[1]};
 	}
 
 	/*
@@ -157,7 +204,11 @@ public class Exercises {
 	 swapEnds([8, 6, 7, 9, 5]) → [5, 6, 7, 9, 8]
 	 */
 	public int[] swapEnds(int[] nums) {
-		return new int[] {};
+		int a = nums[0];
+		int b = nums[nums.length-1];
+		nums[0] = b;
+		nums[nums.length-1]=a;
+		return nums;
 	}
 
 	/*
@@ -167,7 +218,15 @@ public class Exercises {
 	 more14([1, 1]) → true
 	 */
 	public boolean more14(int[] nums) {
-		return false;
+		int ones = 0;
+		int fours = 0;
+		for(int i = 0; i<nums.length; i++) {
+			if(nums[i]==1) {
+				ones++;
+			}if(nums[i]==4) {
+				fours++;
+			}
+		}return (ones>fours);
 	}
 
 	/*
@@ -190,7 +249,11 @@ public class Exercises {
 	 only14([1, 1]) → true
 	 */
 	public boolean only14(int[] nums) {
-		return false;
+		for(int i = 0; i<nums.length; i++) {
+			if(nums[i]!=1 && nums[i]!=4) {
+				return false;
+			}
+		}return true;
 	}
 
 	/*
@@ -200,8 +263,17 @@ public class Exercises {
 	 no14([2, 3, 4]) → true
 	 */
 	public boolean no14(int[] nums) {
-		return false;
-	}
+		 boolean one = false;
+	     boolean four = false;
+	        for (int i = 0; i < nums.length; i++) {
+	            if (nums[i] == 1) {
+	                one = true;
+	            } else if (nums[i] == 4) {
+	                four = true;
+	            }
+	        }
+	        return !one || !four;
+	    }
 
 	/*
 	 20. Given an array of ints, return true if there is a 1 in the array with a 2 somewhere later in the array.
