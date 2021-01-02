@@ -239,8 +239,11 @@ public class Exercises {
 	 fizzArray(10) → [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 	 */
 	public int[] fizzArray(int n) {
-		return new int[] {};
-	}
+		int[] fizz = new int[n];
+		for(int i = 0; i<n; i++){
+			fizz[i] = i;
+			}return fizz;
+		}
 
 	/*
 	 18. Given an array of ints, return true if every element is a 1 or a 4.
@@ -282,9 +285,17 @@ public class Exercises {
 	 has12([3, 1, 4, 5, 2]) → true
 	 */
 	public boolean has12(int[] nums) {
+		for (int i = 0; i < nums.length - 1; i++) {
+			if (nums[i] == 1) {
+				for (int j = i + 1; j < nums.length; j++) {
+					if (nums[j] == 2)
+						return true;
+				}
+			}
+		}
+
 		return false;
 	}
-
 	/*
 	 21. Given start and end numbers, return a new array containing the sequence of integers from start up to but
 	 not including end, so start=5 and end=10 yields {5, 6, 7, 8, 9}. The end number will be greater or equal
@@ -294,7 +305,11 @@ public class Exercises {
 	 fizzArray3(1, 3) → [1, 2]
 	 */
 	public int[] fizzArray3(int start, int end) {
-		return new int[] {};
+		int number = end - start;
+		int[] result = new int[number];
+		for(int i = 0; i < number; i++) {
+			result[i] = start++;
+		}return result;
 	}
 
 	/*
@@ -304,7 +319,13 @@ public class Exercises {
 	 lessBy10(11, 1, 7) → true
 	 */
 	public boolean lessBy10(int a, int b, int c) {
-		return false;
+		if(a -10 >= b || a - 10 >= c) {
+			return true;
+		}if(b -10 >= a || b - 10 >= c) {
+			return true;
+		}if(c -10 >= b || c - 10 >= a) {
+			return true;
+		}return false;
 	}
 
 	/*
@@ -316,7 +337,11 @@ public class Exercises {
 	 greenTicket(1, 1, 2) → 10
 	 */
 	public int greenTicket(int a, int b, int c) {
-		return 0;
+		if(a==b && a ==c) {
+			return 20;
+		}if(a==b ^ b ==c ^ c==a) {
+			return 10;
+		}return 0;
 	}
 
 	/*
@@ -327,7 +352,11 @@ public class Exercises {
 	 blackjack(19, 22) → 19
 	 */
 	public int blackjack(int a, int b) {
-		return 0;
+		if(a>21) a = 0;
+		if(b>21) b = 0;
+		if(a > b) {
+			return a;
+		} return b;
 	}
 
 	/*
@@ -338,7 +367,8 @@ public class Exercises {
 	 evenlySpaced(4, 6, 3) → false
 	 */
 	public boolean evenlySpaced(int a, int b, int c) {
-		return false;
+		return ((a+b) == 2*c) || ((a+c) == 2*b) || ((b+c) == 2*a);
 	}
+	
 
 }
