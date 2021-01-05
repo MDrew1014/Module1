@@ -1,7 +1,13 @@
 package com.techelevator.scanner;
-
+//file class in java which represents a file in the operating system's file tree
 import java.io.File;
+
+//error that occurs when our code accesses a file that does not exist
 import java.io.FileNotFoundException;
+
+//return of the scanner!
+//scanner is a utility class for representing a stream of characters
+//it doesn't care if that stream of characters is from a file or from the command line
 import java.util.Scanner;
 
 public class RTNValidator {
@@ -18,7 +24,7 @@ public class RTNValidator {
 				String line = fileScanner.nextLine();
 				String rtn = line.substring(0, 9);
 				
-				if(checksumIsValid(rtn) == false) {
+				if(!checksumIsValid(rtn)) {
 					System.out.println(line);
 				}
 			}
@@ -34,15 +40,15 @@ public class RTNValidator {
 
 	@SuppressWarnings("resource")
 	private static File getInputFileFromUser() {
-		Scanner userInput = new Scanner(System.in);
+		Scanner userInput = new Scanner(System.in);//system .in is when you get character in the console
 		System.out.print("Please enter path to input file >>> ");
 		String path = userInput.nextLine();
 		
 		File inputFile = new File(path);
-		if(inputFile.exists() == false) { // checks for the existence of a file
+		if(!inputFile.exists()) { // checks for the existence of a file
 			System.out.println(path+" does not exist");
 			System.exit(1); // Ends the program
-		} else if(inputFile.isFile() == false) {
+		} else if(!inputFile.isFile()) {
 			System.out.println(path+" is not a file");
 			System.exit(1); // Ends the program
 		}

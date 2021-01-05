@@ -15,7 +15,11 @@ public class ExceptionsLecture {
 		 * code to handle it. */
 		System.out.println("The following cities: ");
 		String[] cities = new String[] { "Cleveland", "Columbus", "Cincinatti" };
+		
+		
+		
 		try {
+			//dangerous stuff
 			System.out.println(cities[0]);
 			System.out.println(cities[1]);
 			System.out.println(cities[2]);
@@ -27,6 +31,7 @@ public class ExceptionsLecture {
 		}
 		
 		System.out.println();
+		System.out.println("\n\n\n");
 		
 		/* try/catch blocks will also catch Exceptions that are thrown from method calls further down the stack */
 		try {

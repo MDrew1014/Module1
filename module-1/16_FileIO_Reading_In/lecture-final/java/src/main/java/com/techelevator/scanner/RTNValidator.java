@@ -82,7 +82,7 @@ public class RTNValidator {
 			System.exit(1); // Ends the program
 		}
 		return inputFile;
-	}
+	} 
 
 	private static boolean checksumIsValid(String routingNumber) {
 		int checksum = 0;
