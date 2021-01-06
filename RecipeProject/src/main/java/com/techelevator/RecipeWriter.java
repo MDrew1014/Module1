@@ -5,16 +5,17 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class RecipeWriter {
 
 	public static void main(String[] args) {
+		List<String> ingredients = new ArrayList<String>();
 		System.out.println("Enter the path to create a directory: ");
 		Scanner userInput = new Scanner(System.in);
-		String path = userInput.next();
-		System.out.println("Enter the name of the desired a directory: ");
-		path = path + userInput.next();
+		String path = userInput.nextLine();
 		// Creating a File object
 		File newDirectory = new File(path);
 		// Creating the directory
@@ -25,10 +26,9 @@ public class RecipeWriter {
 			System.out.println("Sorry couldn’t create specified directory");
 		}
 		System.out.println();
-		System.out.println("Great! Lets create a new recipe");
-		System.out.println("Enter the name for the new recipe >>> ");
+		System.out.println("Great! Lets create a new recipe file");
+		System.out.println("Enter the name for the new recipe file >>> ");
 		String newFilePath = userInput.nextLine();
-		
 		
 		//   same    =            directory                   ,  fileName
 		File newFile = new File(newDirectory.getAbsolutePath(), newFilePath);
@@ -57,36 +57,27 @@ public class RecipeWriter {
 			String recipeName = userInput.nextLine();
 			System.out.println();
 			
-			System.out.print("Enter first ingredient followed by the amount(i.e.Flour 1 T)>>>");
-			String ingredient1 = userInput.nextLine();
 			
-			System.out.print("Enter the next ingredient followed by the amount(i.e. Olive Oil 1 cup)>>>");
-			String ingredient2 = userInput.nextLine();
 			
-			System.out.print("Enter the next ingredient followed by the amount(i.e. Diced Tomatoes 4oz.)>>>");
-			String ingredient3 = userInput.nextLine();
-			
-			System.out.print("Enter the next ingredient followed by the amount(i.e. Sugar 1 tsp.)>>>");
-			String ingredient4 = userInput.nextLine();
-			
-			System.out.print("Enter the next ingredient followed by the amount(i.e. Beef Stock 2 cups)>>>");
-			String ingredient5 = userInput.nextLine();
-			
-			System.out.print("Enter the next ingredient followed by the amount(i.e. Chicken Breasts 2 each)>>>");
-			String ingredient6 = userInput.nextLine();
-			
-			System.out.print("Enter the next ingredient followed by the amount(i.e. Salt 1 pinch)>>>");
-			String ingredient7 = userInput.nextLine();
-			
+			while(true) {
+				System.out.print("Enter an ingredient followed by the amount(i.e. Salt 1 pinch) or DONE to finish>>>");
+				String ingredient = userInput.nextLine().trim();
+				if(ingredient.contains("DONE")) {
+					break;
+				}else {
+					//TODO add ingredient to ingredient list
+					ingredients.add("\t" + ingredient);
+				}
+			}
+			System.out.println("Your recipe has been created!");
 			try(PrintWriter writer = new PrintWriter(newFile)){
-				writer.println(recipeName);
-				writer.println(ingredient1);
-				writer.println(ingredient2);
-				writer.println(ingredient3);
-				writer.println(ingredient4);
-				writer.println(ingredient5);
-				writer.println(ingredient6);
-				writer.println(ingredient7);
+				writer.println(recipeName.toUpperCase());
+				writer.println("***************");
+				writer.println("***************");
+				writer.println("***************");
+				for(String ingredient : ingredients) {
+				writer.println("\t" + ingredient);
+				}//add
 				
 			}catch (FileNotFoundException fne) {
 				System.out.println("Unable to write to the Recipe file.");
