@@ -26,7 +26,7 @@ public class RecipeWriter {
 		}
 		System.out.println();
 		System.out.println("Great! Lets create a new recipe");
-		System.out.print("Enter the name for the new recipe >>> ");
+		System.out.println("Enter the name for the new recipe >>> ");
 		String newFilePath = userInput.nextLine();
 		
 		
@@ -53,6 +53,10 @@ public class RecipeWriter {
 			}
 		}
 			System.out.println();
+			System.out.print("Enter the name of the recipe>>>");
+			String recipeName = userInput.nextLine();
+			System.out.println();
+			
 			System.out.print("Enter first ingredient followed by the amount(i.e.Flour 1 T)>>>");
 			String ingredient1 = userInput.nextLine();
 			
@@ -75,6 +79,7 @@ public class RecipeWriter {
 			String ingredient7 = userInput.nextLine();
 			
 			try(PrintWriter writer = new PrintWriter(newFile)){
+				writer.println(recipeName);
 				writer.println(ingredient1);
 				writer.println(ingredient2);
 				writer.println(ingredient3);
