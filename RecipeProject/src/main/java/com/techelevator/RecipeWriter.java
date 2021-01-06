@@ -80,8 +80,7 @@ public class RecipeWriter {
 				}//add
 				
 			}catch (FileNotFoundException fne) {
-				System.out.println("Unable to write to the Recipe file.");
-				System.exit(1);
+				
 			}
 			
 			
