@@ -9,21 +9,24 @@ public class WordSearch {
 		Scanner inputScanner = new Scanner(System.in);
 		File inputFile = getInputFileFromUser(inputScanner);
 		String searchString = getSearchString(inputScanner);
-		
-		try(Scanner fileScanner = new Scanner(inputFile)) {
-			for (int lineNumber = 1; fileScanner.hasNextLine();lineNumber++) {
-				String line =fileScanner.nextLine();
-				if(line.contains(searchString)) {
+		boolean caseSensitive = isCaseSensitive(inputScanner);
+		try (Scanner fileScanner = new Scanner(inputFile)) {
+			for (int lineNumber = 1; fileScanner.hasNextLine(); lineNumber++) {
+				String line = fileScanner.nextLine();
+				if (caseSensitive && line.contains(searchString)) {
 					System.out.print(lineNumber + ") " + line + "\n");
+					}else if (!caseSensitive && line.toLowerCase().contains(searchString.toLowerCase())){
+					System.out.print(lineNumber + ") " + line + "\n");
+					
 				}
-				
+
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static File getInputFileFromUser(Scanner userInput) {
 		
 		System.out.print("What is the file that should be searched?");
@@ -42,9 +45,25 @@ public class WordSearch {
 	private static String getSearchString(Scanner userInput) {
 		System.out.print("What string should we search for ?");
 		String searchString = userInput.nextLine();
-		System.out.println("Should the search be case sensitive? (Y/N)");
-		String yesOrNo = userInput.nextLine().toLowerCase().substring(0,1);
 		return searchString;
 	}
+	
+	private static boolean isCaseSensitive(Scanner userInput) {
+		while(true) {
+		System.out.println("Should the search be case sensitive? (Y/N)");
+		String yesOrNo = userInput.nextLine().toLowerCase();
+		if(yesOrNo.charAt(0) == 'y') {
+			return true;
+		} else if(yesOrNo.charAt(0) == 'n') {
+			return false;
+		}else {
+			System.out.println("Please enter Y or N!!!");
+			
+		}}
+	}
+	
+	
+	
+	
 	
 }	
