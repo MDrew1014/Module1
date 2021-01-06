@@ -11,7 +11,7 @@ public class FizzWriter {
 
 	public static void main(String[] args) {
 		
-	File fizzBuzz = new File("FizzBuzz");
+	File fizzBuzz = new File("FizzBuzz.txt");
 	String results = null;
 	
 		try (PrintWriter writer = new PrintWriter(fizzBuzz)) {
