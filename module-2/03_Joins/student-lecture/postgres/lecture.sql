@@ -102,10 +102,10 @@ LEFT JOIN city on country.capital = city.id;
 
 -- Gathers a list of all first names used by actors and customers
 -- By default removes duplicates
-SELECT first_name 
+SELECT first_name, last_name, 'A' AS source
 FROM actor
 UNION
-SELECT first_name
+SELECT first_name, last_name, 'C'AS source
 FROM customer;
 
 -- Gather the list, but this time note the source table with 'A' for actor and 'C' for customer
