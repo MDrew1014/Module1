@@ -17,18 +17,22 @@ depart_number int
 CREATE TABLE department
 (
 depart_id serial PRIMARY KEY,
-depart_name varchar(64),
-employee_id int
+depart_name varchar(64)
+
 
 );
-
+CREATE TABLE employee_project (
+employee_id int ,
+project_id int,
+CONSTRAINT pk PRIMARY KEY (employee_id, project_id)
+);
 
 CREATE TABLE project
 (
-project_num serial PRIMARY KEY,
+project_num int,
 project_name varchar(64),
 start_date DATE,
-emp_id int
+emp_id int PRIMARY KEY
 );
 
 
@@ -57,40 +61,59 @@ VALUES ('kitchen');
 INSERT INTO department(depart_name)
 VALUES ('bakery');
 
+INSERT INTO employee_project(employee_id, project_id)
+VALUES (1, 2);
+INSERT INTO employee_project(employee_id, project_id)
+VALUES (2, 4);
+INSERT INTO employee_project(employee_id, project_id)
+VALUES (3, 3);
+INSERT INTO employee_project(employee_id, project_id)
+VALUES (4, 1);
+INSERT INTO employee_project(employee_id, project_id)
+VALUES (5, 3);
+INSERT INTO employee_project(employee_id, project_id)
+VALUES (6, 4);
+INSERT INTO employee_project(employee_id, project_id)
+VALUES (7, 4);
+INSERT INTO employee_project(employee_id, project_id)
+VALUES (8, 1);
 
 
 
-INSERT INTO project (project_name, start_date, emp_id)
-VALUES ('apps', '01/01/2020', 4);
-INSERT INTO project (project_name, start_date, emp_id)
-VALUES ('dinner', '02/01/2020', 1);
-INSERT INTO project (project_name, start_date, emp_id)
-VALUES ('dessert', '03/01/2020', 3);
-INSERT INTO project (project_name, start_date, emp_id)
-VALUES ('cocktails', '04/01/2020', 2);
-INSERT INTO project (project_name, start_date, emp_id)
-VALUES ('apps', '01/01/2020', 8);
-INSERT INTO project (project_name, start_date, emp_id)
-VALUES ('dessert', '03/01/2020', 5);
-INSERT INTO project (project_name, start_date, emp_id)
-VALUES ('cocktails', '04/01/2020', 6);
-INSERT INTO project (project_name, start_date, emp_id)
-VALUES ('cocktails', '04/01/2020', 7);
+INSERT INTO project (project_num, project_name, start_date, emp_id)
+VALUES (1, 'apps', '01/01/2020', 4);
+INSERT INTO project (project_num,project_name, start_date, emp_id)
+VALUES (2, 'dinner', '02/01/2020', 1);
+INSERT INTO project (project_num,project_name, start_date, emp_id)
+VALUES (3, 'dessert', '03/01/2020', 3);
+INSERT INTO project (project_num,project_name, start_date, emp_id)
+VALUES (4, 'cocktails', '04/01/2020', 2);
+INSERT INTO project (project_num,project_name, start_date, emp_id)
+VALUES (1, 'apps', '01/01/2020', 8);
+INSERT INTO project (project_num,project_name, start_date, emp_id)
+VALUES (3, 'dessert', '03/01/2020', 5);
+INSERT INTO project (project_num,project_name, start_date, emp_id)
+VALUES (4, 'cocktails', '04/01/2020', 6);
+INSERT INTO project (project_num,project_name, start_date, emp_id)
+VALUES (4, 'cocktails', '04/01/2020', 7);
 
-ALTER TABLE department
-ADD CONSTRAINT fk_employee_id_id FOREIGN KEY (employee_id) REFERENCES employee(id);
+ALTER TABLE employee_project
+ADD CONSTRAINT fk_emp_id_id FOREIGN KEY (employee_id) REFERENCES employee(id),
+ADD CONSTRAINT fk_project_id FOREIGN KEY (employee_id) REFERENCES project(emp_id);
 
 
-ALTER TABLE project
-ADD CONSTRAINT fk_emp_id_id FOREIGN KEY (emp_id) REFERENCES employee(id);
-
+ALTER TABLE employee
+ADD CONSTRAINT fkx FOREIGN KEY (depart_number) REFERENCES department(depart_id);
 
 
 SELECT * FROM employee;
 SELECT * FROM department;
 SELECT * FROM project;
+SELECT * FROM employee_project;
 SELECT *
 FROM employee
-JOIN project ON employee.id = project.emp_id;
+JOIN project ON employee.id = project.emp_id
+JOIN department ON employee.depart_number = department.depart_id
+JOIN employee_project ON employee_project.employee_id=employee.id;
 
 ROLLBACK;
