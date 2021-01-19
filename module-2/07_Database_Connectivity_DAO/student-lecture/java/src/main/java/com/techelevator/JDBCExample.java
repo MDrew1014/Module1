@@ -22,6 +22,8 @@ public class JDBCExample {
 		
 		Connection conn = dataSource.getConnection();
 		
+				
+		
 		/* Create a Statement object so that we can execute a SQL Query */
 		Statement stmt = conn.createStatement();
 		
