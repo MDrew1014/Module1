@@ -116,4 +116,4 @@ JOIN project ON employee.id = project.emp_id
 JOIN department ON employee.depart_number = department.depart_id
 JOIN employee_project ON employee_project.employee_id=employee.id;
 
-COMMITgit;
+COMMIT;
