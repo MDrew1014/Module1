@@ -15,7 +15,8 @@ public class HotelService {
     }
 
     public Hotel[] listHotels() {
-        return restTemplate.getForObject(API_BASE_URL + "hotels", Hotel[].class);
+    	String requestUrl = API_BASE_URL + "hotels";
+        return restTemplate.getForObject(requestUrl, Hotel[].class);
     }
 
     public Review[] listReviews() {
@@ -23,7 +24,8 @@ public class HotelService {
     }
 
     public Hotel getHotelById(int id) {
-        return restTemplate.getForObject(API_BASE_URL + "hotels/" + id, Hotel.class);
+    	String requestUrl = API_BASE_URL + "hotels/" + id;
+        return restTemplate.getForObject(requestUrl, Hotel.class);
     }
 
     public Review[] getReviewsByHotelId(int hotelID) {

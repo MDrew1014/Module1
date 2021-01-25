@@ -1,5 +1,5 @@
 package com.techelevator.models;
-
+//POJO
 public class Hotel {
 
     private int id;
