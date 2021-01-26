@@ -1,5 +1,6 @@
 package com.techelevator.services;
 
+
 import com.techelevator.models.Auction;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -66,19 +67,70 @@ public class AuctionService {
     }
 
     public Auction add(String auctionString) {
-        // place code here
-        return null;
-    }
-
+       Auction auction = this.makeAuction(auctionString);
+       if(auction == null) {
+    	   return null;
+       }
+       HttpHeaders headers = new HttpHeaders();
+       headers.setContentType(MediaType.APPLICATION_JSON);
+       HttpEntity<Auction> entity = new HttpEntity<>(auction, headers);
+       String requestUrl = API_URL;
+       try {
+   		//                                                            url         body content    return type
+   		Auction createdAuction = restTemplate.postForObject(requestUrl, entity, Auction.class);
+   		return createdAuction;
+   	// this error means I talked to the api, and it didn't like what I said
+   	} catch (RestClientResponseException ex) {
+   		console.printError(ex.getRawStatusCode() + " : " + ex.getStatusText());
+   		
+   	// this error means I was unable to access the api at all
+   	} catch (ResourceAccessException ex) {
+   		console.printError(ex.getMessage());
+   	}
+   	  
+       return null;
+     }
     public Auction update(String auctionString) {
-        // place code here
+    	Auction auction = this.makeAuction(auctionString);
+        if(auction == null) {
+     	   return null;
+        }
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Auction> entity = new HttpEntity<>(auction, headers);
+        
+        try {
+        	String requestUrl = API_URL+"/"+auction.getId();
+        	
+        	// updates the record with a PUT request
+        	// think of the PUT verb as replace all
+        	restTemplate.put(requestUrl, entity);
+        	
+        	return auction;
+        	
+        } catch(RestClientResponseException ex) {
+        	console.printError(ex.getRawStatusCode() + " : " + ex.getStatusText());
+        } catch (ResourceAccessException ex) {
+        	console.printError(ex.getMessage());
+        }
+        
+        
+        // if I get here, I had a failure and should return null
         return null;
-    }
+      }
 
     public boolean delete(int id) {
-    	// place code here
-    	return false; 
-    }
+    	String requestUrl = API_URL + "/"+id;
+    	try {
+        	restTemplate.delete(requestUrl);
+        	return true;
+        } catch(RestClientResponseException ex) {
+        	console.printError(ex.getStatusText() + " : " + ex.getStatusText());
+        } catch (ResourceAccessException ex) {
+        	console.printError(ex.getMessage());
+        }
+        return false;
+      }
 
     private HttpEntity<Auction> makeEntity(Auction auction) {
         HttpHeaders headers = new HttpHeaders();
