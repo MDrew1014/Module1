@@ -5,7 +5,7 @@ import com.techelevator.hotels.models.Reservation;
 
 import java.util.Scanner;
 
-public class ConsoleService {
+public class ConsoleService implements AutoCloseable {
 
   private Scanner scanner;
 
@@ -111,11 +111,7 @@ public class ConsoleService {
     scanner.nextLine();
   }
 
-  public void exit() {
-    scanner.close();
-    System.exit(0);
-  }
-
+  
   public void printError(String errorMessage) {
     System.err.println(errorMessage);
   }
@@ -179,4 +175,10 @@ public class ConsoleService {
     return menuSelection;
   }
 
+@Override
+public void close() {
+	scanner.close();
+	
+}
+ 
 }

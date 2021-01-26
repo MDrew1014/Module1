@@ -15,10 +15,11 @@ public class HotelService {
 
   private final String BASE_URL;
   private final RestTemplate restTemplate = new RestTemplate();
-  private final ConsoleService console = new ConsoleService();
+  private final ConsoleService console;
 
-  public HotelService(String url) {
+  public HotelService(String url, ConsoleService console) {
     BASE_URL = url;
+    this.console = console;
   }
 
   /**
@@ -27,9 +28,31 @@ public class HotelService {
    * @param newReservation
    * @return Reservation
    */
-  public Reservation addReservation(String newReservation) {
-    // TODO: Implement method
-    return null;
+	public Reservation addReservation(String newReservation) {
+		// turn the string into a reservation object
+		Reservation reservation = this.makeReservation(newReservation);
+		if (reservation == null) {
+			return null;
+		}
+		// make api call to insert reservation object
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		HttpEntity<Reservation> entity = new HttpEntity<Reservation>(reservation, headers);
+
+		// deal with any errors
+		// http://localhost/hotels/1234/reservations
+		String requestUrl = BASE_URL + "hotels/" + reservation.getHotelID() + "/reservations";
+
+		try {
+			Reservation createdReservation = restTemplate.postForObject(requestUrl, entity, Reservation.class);
+			return createdReservation;
+		} catch (RestClientResponseException ex) {
+			console.printError(ex.getRawStatusCode() + " : " + ex.getStatusText());
+		} catch (ResourceAccessException ex) {
+			console.printError(ex.getMessage());
+		}
+		return null;
   }
 
   /**
@@ -40,9 +63,28 @@ public class HotelService {
    * @return
    */
   public Reservation updateReservation(String CSV) {
-    // TODO: Implement method
-    return null;
+	  Reservation reservation = this.makeReservation(CSV);
+		if (reservation == null) {
+			return null;
+		}
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<Reservation> entity = new HttpEntity<Reservation>(reservation, headers);
+		
+		try {
+			String requestUrl = BASE_URL + "reservations/"+ reservation.getId();
+			restTemplate.put(requestUrl, entity);
+			
+		} catch (RestClientResponseException ex) {
+			console.printError(ex.getRawStatusCode() + " : " + ex.getStatusText());
+		} catch (ResourceAccessException ex) {
+			console.printError(ex.getMessage());
+		}
+		return null;
   }
+		
+		
+    
 
   /**
    * Delete an existing reservation
@@ -50,7 +92,14 @@ public class HotelService {
    * @param id
    */
   public void deleteReservation(int id) {
-    // TODO: Implement method
+	  String requestUrl = BASE_URL + "reservations/"+ id;
+	  try {
+		  restTemplate.delete(requestUrl);
+	  }catch (RestClientResponseException ex) {
+			console.printError(ex.getRawStatusCode() + " : " + ex.getStatusText());
+		} catch (ResourceAccessException ex) {
+			console.printError(ex.getMessage());
+		}	  
   }
 
   /* DON'T MODIFY ANY METHODS BELOW */
@@ -138,7 +187,11 @@ public class HotelService {
     try {
       reservation = restTemplate.getForObject(BASE_URL + "reservations/" + reservationId, Reservation.class);
     } catch (RestClientResponseException ex) {
+    	if(ex.getRawStatusCode()==404) {
+    		console.printError("No such reservation exists, try again...");
+    	}else {
       console.printError(ex.getRawStatusCode() + " : " + ex.getStatusText());
+    	}
     } catch (ResourceAccessException ex) {
       console.printError(ex.getMessage());
     }
