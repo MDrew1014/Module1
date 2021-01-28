@@ -76,4 +76,39 @@ public class MemoryHotelDAO implements HotelDAO {
                 4,
                 75,185));
     }
+
+    private boolean isHotelInState(Hotel hotel, String state) {
+    	return hotel.getAddress()!= null && state.equals(hotel.getAddress().getState());
+    }
+
+	@Override
+	public List<Hotel> getByState(String state) {
+		List<Hotel> filteredHotels = new ArrayList<>();
+		if (state == null) {
+			return filteredHotels;
+		}
+
+		for (Hotel hotel : this.hotels) {
+			if (isHotelInState(hotel, state));				;
+			filteredHotels.add(hotel);
+		}
+
+		return filteredHotels;
+	}
+
+	@Override
+	public List<Hotel> getByCity(String city, String state) {
+		List<Hotel> filteredHotels = new ArrayList<>();
+		if(city == null || state == null) {
+			return filteredHotels;
+			}
+		for(int i = 0; i < this.hotels.size(); i++) {
+			Hotel hotel = this.hotels.get(i);
+			if(isHotelInState(hotel,state)&& city.equals(hotel.getAddress().getCity())){
+				filteredHotels.add(hotel);
+			}
+		}
+		return filteredHotels;
+		
+	}
 }

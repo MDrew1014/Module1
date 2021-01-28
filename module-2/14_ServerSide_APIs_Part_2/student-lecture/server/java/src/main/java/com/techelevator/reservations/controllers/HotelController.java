@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @RestController
@@ -85,9 +85,20 @@ public class HotelController {
      */
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/hotels/{id}/reservations", method = RequestMethod.POST)
-    public Reservation addReservation(@RequestBody Reservation reservation, @PathVariable("id") int hotelID)
+    public Reservation addReservation(@Valid @RequestBody Reservation reservation, @PathVariable("id") int hotelID)
             throws HotelNotFoundException {
         return reservationDAO.create(reservation, hotelID);
+    }
+    
+    /**
+     * 
+     * @param id
+     * @throws ReservationNotFoundException
+     */
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/reservations/{id}", method = RequestMethod.DELETE)
+    public void deleteReservation(@PathVariable int id) throws ReservationNotFoundException {
+    	this.reservationDAO.delete(id);
     }
 
     /**
@@ -99,27 +110,13 @@ public class HotelController {
      */
     @RequestMapping(path = "/hotels/filter", method = RequestMethod.GET)
     public List<Hotel> filterByStateAndCity(@RequestParam String state, @RequestParam(required = false) String city) {
-
-        List<Hotel> filteredHotels = new ArrayList<>();
-        List<Hotel> hotels = list();
-
-        // return hotels that match state
-        for (Hotel hotel : hotels) {
-
-            // if city was passed we don't care about the state filter
-            if (city != null) {
-                if (hotel.getAddress().getCity().toLowerCase().equals(city.toLowerCase())) {
-                    filteredHotels.add(hotel);
-                }
-            } else {
-                if (hotel.getAddress().getState().toLowerCase().equals(state.toLowerCase())) {
-                    filteredHotels.add(hotel);
-                }
-
-            }
-        }
-
-        return filteredHotels;
+    	if(city!= null) {
+    		return this.hotelDAO.getByCity(city, state);
+    	}else {
+    		return this.hotelDAO.getByState(state);
+    	}
+    	
+    	
+        
     }
-
 }
