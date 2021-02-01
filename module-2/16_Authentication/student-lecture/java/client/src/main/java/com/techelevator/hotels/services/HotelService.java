@@ -34,9 +34,15 @@ public class HotelService {
     if (reservation == null) {
       throw new HotelServiceException(INVALID_RESERVATION_MSG);
     }
-
-    // TODO: Fix Me
-    throw new HotelServiceException("NOT IMPLEMENTED");
+    try {
+    	String requestUrl = BASE_URL + "hotels/" + reservation.getHotelID()+ "/reservations";
+    	HttpEntity<Reservation> entity = makeReservationEntity(reservation);
+    	return restTemplate.exchange(requestUrl, HttpMethod.POST, entity, Reservation.class).getBody();
+    	
+    } catch(RestClientResponseException ex) {
+    	throw new HotelServiceException("Unable to create your reservation, try again later");
+    }
+    
   }
 
   /**

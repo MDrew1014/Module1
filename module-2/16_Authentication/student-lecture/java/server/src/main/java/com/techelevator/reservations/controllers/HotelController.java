@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-
+@PreAuthorize("isAuthenticated()")
 @RestController
 public class HotelController {
 
@@ -33,6 +33,7 @@ public class HotelController {
      *
      * @return a list of all hotels in the system
      */
+    @PreAuthorize("permitAll")
     @RequestMapping(path = "/hotels", method = RequestMethod.GET)
     public List<Hotel> list() {
         return hotelDAO.list();
@@ -44,6 +45,7 @@ public class HotelController {
      * @param id the id of the hotel
      * @return all info for a given hotel
      */
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(path = "/hotels/{id}", method = RequestMethod.GET)
     public Hotel get(@PathVariable int id) {
         return hotelDAO.get(id);
@@ -54,6 +56,7 @@ public class HotelController {
      *
      * @return all reservations
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "/reservations", method = RequestMethod.GET)
     public List<Reservation> listReservations() {
         return reservationDAO.findAll();
@@ -76,6 +79,7 @@ public class HotelController {
      * @param hotelID
      * @return all reservations for a given hotel
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "/hotels/{id}/reservations", method = RequestMethod.GET)
     public List<Reservation> listReservationsByHotel(@PathVariable("id") int hotelID) throws HotelNotFoundException {
         return reservationDAO.findByHotel(hotelID);
@@ -102,6 +106,7 @@ public class HotelController {
      * @return the updated Reservation
      * @throws ReservationNotFoundException
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(path = "/reservations/{id}", method = RequestMethod.PUT)
     public Reservation update(@Valid @RequestBody Reservation reservation, @PathVariable int id)
             throws ReservationNotFoundException {
@@ -114,10 +119,11 @@ public class HotelController {
      * @param id
      * @throws ReservationNotFoundException
      */
+    @PreAuthorize("hasRole('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/reservations/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable int id) throws ReservationNotFoundException {
-        auditLog("delete", id, "username");
+    public void delete(@PathVariable int id, Principal principal) throws ReservationNotFoundException {
+        auditLog("delete", id, principal.getName()+" ");
         reservationDAO.delete(id);
     }
 
