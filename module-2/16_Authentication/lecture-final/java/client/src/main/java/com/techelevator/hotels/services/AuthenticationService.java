@@ -1,6 +1,8 @@
 package com.techelevator.hotels.services;
 
 import com.techelevator.hotels.models.LoginDTO;
+import com.techelevator.services.ConsoleService;
+
 import org.springframework.http.*;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;

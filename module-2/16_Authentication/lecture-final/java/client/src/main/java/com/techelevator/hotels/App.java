@@ -3,6 +3,8 @@ package com.techelevator.hotels;
 import com.techelevator.hotels.models.Hotel;
 import com.techelevator.hotels.models.Reservation;
 import com.techelevator.hotels.services.*;
+import com.techelevator.services.ConsoleService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.ResourceAccessException;
 
