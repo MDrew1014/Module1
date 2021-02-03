@@ -31,10 +31,7 @@ public class JDBCCocktailDAO implements CocktailDAO {
 		SqlRowSet results = template.queryForRowSet(query);
 		
 		while(results.next()) {
-			Cocktail cocktail = new Cocktail(
-					results.getInt("id"),
-					results.getString("name")
-					);
+			Cocktail cocktail = mapRowToCocktail(results);
 			cocktails.add(cocktail);
 		}
 		
@@ -43,8 +40,20 @@ public class JDBCCocktailDAO implements CocktailDAO {
 
 	@Override
 	public Cocktail getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT id, name, alcoholic FROM cocktail WHERE id = ?";
+		SqlRowSet result = template.queryForRowSet(query, id);
+		if(result.next()) {
+			return mapRowToCocktail(result);
+		}else {
+			return null;
+		}
 	}
 
+	private Cocktail mapRowToCocktail(SqlRowSet row) {
+		return new Cocktail(
+				row.getInt("id"),
+				row.getString("name")
+				);
+		
+	}
 }

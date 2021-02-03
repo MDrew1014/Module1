@@ -3,6 +3,7 @@ package com.techelevator.cocktail.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,16 +21,18 @@ public class CocktailController {
 		this.dao = dao;
 	}
 	
-	//TODO READ ALL
+	
 	
 	@RequestMapping(path="",method=RequestMethod.GET)
 	public List<Cocktail> getAll(){
 		return this.dao.getAll();
 	}
 	
-	//TODO Get specific
 	
-	
+	@RequestMapping(path="/{id}", method = RequestMethod.GET)
+	public Cocktail getById(@PathVariable int id) {
+		return this.dao.getById(id);
+	}
 	//TODO CREATE
 	
 	
