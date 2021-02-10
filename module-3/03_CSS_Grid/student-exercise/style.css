@@ -119,6 +119,7 @@ grid-area: design;
     grid-template-areas:
     "headline headline"
     "quote photo"
+    "quote contact"
     "profile profile"
     "grid grid";
     }
