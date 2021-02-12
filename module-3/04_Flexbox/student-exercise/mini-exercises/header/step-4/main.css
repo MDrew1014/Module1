@@ -11,6 +11,14 @@ header {
 .logo {
   width: 140px;
 }
+header, ul {
+  display:flex;
+  justify-content: space-between;
+  
+ 
+  
+ 
+}
 
 ul {
   margin: 0;
@@ -25,6 +33,7 @@ li {
   color: #707070;
   padding: 0 20px 0 0;
   margin-left: 20px;
+  
 }
 
 li a,
@@ -38,8 +47,12 @@ li a:hover {
   text-decoration: underline;
 }
 
-.spacer {}
+.spacer {
+  justify-content: right;
+  flex-basis: 100%;
+}
 
 .my-account img {
   width: 32px;
+ 
 }

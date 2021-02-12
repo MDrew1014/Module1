@@ -11,6 +11,13 @@ header {
 .logo {
   width: 140px;
 }
+header, ul {
+  display:flex;
+  justify-content: flex-end;
+ 
+  
+ 
+}
 
 nav {
   flex-grow: 1;
@@ -29,6 +36,7 @@ li {
   color: #707070;
   padding: 0 20px 0 0;
   margin-left: 20px;
+  
 }
 
 a,

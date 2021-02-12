@@ -1,11 +1,19 @@
 body {
   margin: 20px;
-  padding: 0
+  padding: 0;
+ 
 }
 
 header {
   background-color: #F0F0F0;
   padding: 20px;
+ 
+  
+}
+header, ul {
+  display:flex;
+  justify-content: center;
+ 
 }
 
 .logo {
@@ -20,6 +28,8 @@ ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
+  
+ 
 }
 
 li {
