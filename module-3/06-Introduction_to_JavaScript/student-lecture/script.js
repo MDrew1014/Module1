@@ -3,6 +3,9 @@
 */
 
 // Single line comment
+function multiplyTogether(firstNum, secondNum){
+  return firstNum*secondNum;
+}
 
 /**
  * Functions start with the word function.
@@ -10,10 +13,32 @@
  */
 function variables() {
   // Declares a variable where the value cannot be changed
-  // Declares a variable those value can be changed
-  // Declares a variable that will always be an array
-}
+  const  daysPerWeek = 7;
 
+  console.log(`There are ${daysPerWeek} days in the week`);
+
+  // Declares a variable those value can be changed
+  let daysPerMonth = 30;
+console.log(`Months usually have ${daysPerMonth} days`);
+daysPerMonth = 28;
+console.log(`Except for February which has ${daysPerMonth} days`);
+
+  // Declares a variable that will always be an array
+  const weekdays = [
+    "monday",
+    "tuesday",
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday',
+    'sunday'
+  ];
+  console.table(weekdays);
+//add a bonus day to array
+weekdays.push('humpday')
+console.table(weekdays);
+
+}
 /**
  * Functions can also accept parameters.
  * Notice the parameters do not have types.
@@ -70,14 +95,21 @@ function objects() {
       "Milton Waddams",
       "Samir Nagheenanajar",
       "Michael Bolton"
-    ]
+    ],
+    toString: function(){
+      return `${this.lastName}, ${this.firstName} (${this.age})`;
+    }
   };
 
   // Log the object
-
+console.table(person);
   // Log the first and last name
-
+console.log(`First Name:${person.firstName} Last Name: ${person.lastName}`);
   // Log each employee
+  for(let i = 0; i< person.employees.length; i++){
+    console.log(`Employee ${i+1} is ${person.employees[i]}`)
+  }
+console.log(person.toString());
 }
 
 /*
