@@ -60,13 +60,6 @@ function displayReview(review) {
 
 // LECTURE STARTS HERE ---------------------------------------------------------------
 
-// set the product reviews page title
-setPageTitle();
-// set the product reviews page description
-setPageDescription();
-// display all of the product reviews on our page
-displayReviews();
-
 /**
  * Take an event on the description and swap out the description for a text box.
  *
@@ -131,3 +124,16 @@ function resetFormValues() {
  * I will save the review that was added using the add review from
  */
 function saveReview() {}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+
+
+  // set the product reviews page title
+  setPageTitle();
+  // set the product reviews page description
+  setPageDescription();
+  // display all of the product reviews on our page
+  displayReviews();
+  });
