@@ -136,4 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setPageDescription();
   // display all of the product reviews on our page
   displayReviews();
+  const desc = document.querySelector('.description')
   });
+  
