@@ -12,7 +12,6 @@ const groceries = [
   { id: 9, name: 'Salad', completed: false },
   { id: 10, name: 'Tea', completed: false }
 ];
-
 /**
  * This function will get a reference to the title and set its text to the value
  * of the pageTitle variable that was set above.
@@ -21,7 +20,6 @@ function setPageTitle() {
   const title = document.getElementById('title');
   title.innerText = pageTitle;
 }
-
 /**
  * This function will loop over the array of groceries that was set above and add them to the DOM.
  */
@@ -39,45 +37,37 @@ function displayGroceries() {
 document.addEventListener("DOMContentLoaded", () => {
   setPageTitle();
   displayGroceries();
-const tasks = document.querySelectorAll('li');
-tasks.forEach((task) => {
-
-  
-  task.addEventListener('click', () => {
-    if( !task.classList.contains('completed') ) {
-      task.classList.add('completed')
-      task.querySelector('i').classList.add('completed')
+  const items = document.querySelectorAll('li');
+  items.forEach((item) => {
+    item.addEventListener('click', () => {
+      if (!item.classList.contains('completed')) {
+        item.classList.add('completed');
+        item.querySelector('i').classList.add('completed');
+      }
+    });
+    item.addEventListener('dblclick', () => {
+      if (item.classList.contains('completed')) {
+        item.classList.remove('completed');
+        item.querySelector('i').classList.remove('completed');
+      }
+    });
+  });
+  const completeAll = document.getElementById('toggleAll');
+  completeAll.addEventListener('click', () => {
+    if (allItemsIncomplete) {
+      items.forEach((item) => {
+        item.classList.add('completed');
+        item.querySelector('i').classList.add('completed');
+      })
+      allItemsIncomplete = false;
+      completeAll.innerText = "Mark All Incomplete";
+    } else{
+      items.forEach((item) => {
+        item.classList.remove('completed');
+        item.querySelector('i').classList.remove('completed');
+      })
+      allItemsIncomplete = true;
+      completeAll.innerText = "Mark All Complete";
     }
-  })
-
- 
-  task.addEventListener('dblclick',() => {
-    if( task.classList.contains('completed') ) {
-      task.classList.remove('completed')
-      task.querySelector('i').classList.remove('completed')
-    }
-  })
-
-})
-
-
-const completeAll = document.getElementById('toggleAll')
-completeAll.addEventListener('click',() => {
-  tasks.forEach((task) => {
-    task.classList.add('completed')
-    task.querySelector('i').classList.add('completed')
-  })
-})
-
-completeAll.addEventListener('dblclick', () => {
-  tasks.forEach((task) =>{
-    task.classList.remove('completed')
-    task.querySelector('i').classList.remove('completed')
-  })
-}
-)
-
+  });
 });
-
-
-

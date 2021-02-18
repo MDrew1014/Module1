@@ -51,6 +51,7 @@ function clickOperator() {
 /**
  * Captures a number click and updates the display value.
  * @param {Event} event 
+ * 
  */
 function clickNumber(event) {
   const val = event.target.value;
@@ -72,28 +73,52 @@ function clear() {
 }
 
 // add event listener for when the DOM is loaded
-document.addEventListener('LOADED_EVENT_GOES_HERE', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
   // set the variable called display equal to the display element
   // HINT: use its id #display to get a reference to it
-
+display = document.getElementById('display');
+const numbers = document.querySelectorAll('.number');
+numbers.forEach((number) => {
+  number.addEventListener('click', (event)=> {
+    clickNumber(event);
+  })
+});
   // get a reference to all of the numbers
   // loop over each of the numbers
   // add a click event listener to each number to call the function clickNumber
-
+  const decimal = document.querySelectorAll('.decimal');
+  decimal.forEach((dec) => {
+    dec.addEventListener('click', (event) => {
+      if(display.value.includes('.')){
+        return;
+      }
+      clickNumber(event);      
+    });
+  });
   // get a reference to the decimal point button
   // add a click event listener to call the function clickNumber
   // the decimal point is part of the number so append it
-
-  // get a reference to the all clear button
-  // add a click event listener to call the function clear  
-
-  // get a reference to all of the operators;
+  const acButton = document.querySelectorAll('.all-clear');
+  acButton.forEach((acb) => {
+    acb.addEventListener('click', clear)
+  });
+// get a reference to all of the operators;
   // loop over each of the operators
   // add a click event listener to each operator to call the function clickOperator
 
-  // add click event listener for the equal sign
-  // should call the function performOperation
-
+const operator = document.querySelectorAll('.operator');
+operator.forEach((op) => {
+  op.addEventListener('click', () => {
+    clickOperator();
+  });
 });
 
+const equals = document.querySelector('.equal-sign');
+equals.addEventListener('click', performOperation);
+
+
+ 
+  // add click event listener for the equal sign
+  // should call the function performOperation
+ });
