@@ -1,17 +1,22 @@
 <template>
   <div id="app" class="main">
-    <h1>Product Reviews for </h1>
-    <p class="description"></p>
+    <h1>Product Reviews for 
+      {{$store.state.name}}
+    </h1>
+    <p class="description">{{$store.state.description}}</p>
     <div class="well-display">
       <average-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
+      <star-summary rating="1"/>
+      <star-summary rating="2"/>
+      <star-summary rating="3"/>
+      <star-summary rating="4"/>
+      <star-summary rating="5"/>
     </div>
     <add-review />
-    <review-list />
+    <a href="#" v-on:click.prevent="toggleRevewDisplay">
+      Display reviews as {{reviewDisplayForm === 'List' ? 'Table' : 'List'}}</a>
+    <review-list v-if="reviewDisplayForm === 'List'" />
+    <review-table v-if="revewDisplayForm === 'Table'"/>
   </div>
 </template>
 
@@ -20,14 +25,26 @@ import AverageSummary from "./components/AverageSummary.vue";
 import StarSummary from "./components/StarSummary.vue";
 import AddReview from "./components/AddReview.vue";
 import ReviewList from "./components/ReviewList.vue";
+import ReviewTable from "./components/ReviewTable.vue";
 
 export default {
   name: "app",
+  data(){
+    return {
+      reviewDisplayForm : 'List'
+    }
+  },
+  methods:{
+    toggleRevewDisplay(){
+      this.reviewDisplayForm = this.reviewDisplayForm === 'list' ? 'Table' : 'List';
+    }
+  },
   components: {
     AverageSummary,
     StarSummary,
     AddReview,
-    ReviewList
+    ReviewList,
+    ReviewTable
   }
 };
 </script>

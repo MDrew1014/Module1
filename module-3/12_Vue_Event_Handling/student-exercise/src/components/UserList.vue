@@ -17,10 +17,9 @@
           <td>
             <input
               type="checkbox"
-             
+             v-on:change="selects()"
               id="selectAll"
-              v-on:click.prevent="selects()"
-              
+            v-bind:checked="selectAll"              
               
             />
           </td>
@@ -130,6 +129,7 @@ export default {
   name: "user-list",
   data() {
     return {
+      selectAll:false,
       selectedUserIDs: [],
       showForm: false,
       filter: {
@@ -249,7 +249,20 @@ export default {
           (id) => id != userId
         );
       }
+      if(this.selectAll && this.selectedUserIDs.length!=this.users.length){
+        this.selectAll = false;
+      }else if(!this.selectAll && this.selectedUserIDs.length==this.users.length){
+        this.selectAll = true;
+
+      }
     },
+    selects(){
+      if(this.selectAll){
+        this.selectedUserIDs = this.users.map((user) => user.id)
+      }else{
+        this.selectedUserIDs = {};
+      }
+    }
   },
   computed: {
     filteredList() {
