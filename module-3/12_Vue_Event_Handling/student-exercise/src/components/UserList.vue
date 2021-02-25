@@ -17,10 +17,10 @@
           <td>
             <input
               type="checkbox"
-             v-on:change="selects()"
               id="selectAll"
-            v-bind:checked="selectAll"              
-              
+              v-on:change="selects"
+             v-model="selectAll"
+
             />
           </td>
           <td>
@@ -56,7 +56,6 @@
           <td>
             <input
               type="checkbox"
-              
               v-bind:id="user.id"
               v-bind:value="user.id"
               v-bind:checked="selectedUserIDs.includes(user.id)"
@@ -129,7 +128,7 @@ export default {
   name: "user-list",
   data() {
     return {
-      selectAll:false,
+      selectAll: false,
       selectedUserIDs: [],
       showForm: false,
       filter: {
@@ -200,8 +199,6 @@ export default {
     };
   },
   methods: {
-   
-
     saveUser() {
       const newestUser = this.newUser;
       this.users.unshift(newestUser);
@@ -249,18 +246,13 @@ export default {
           (id) => id != userId
         );
       }
-      if(this.selectAll && this.selectedUserIDs.length!=this.users.length){
-        this.selectAll = false;
-      }else if(!this.selectAll && this.selectedUserIDs.length==this.users.length){
-        this.selectAll = true;
-
-      }
+      
     },
     selects(){
       if(this.selectAll){
-        this.selectedUserIDs = this.users.map((user) => user.id)
-      }else{
-        this.selectedUserIDs = {};
+        this.selectedUserIDs=this.users.map((user)=> user.id);
+      }else {
+        this.selectedUserIDs = [];
       }
     }
   },
