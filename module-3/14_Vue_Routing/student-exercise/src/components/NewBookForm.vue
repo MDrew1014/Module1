@@ -23,6 +23,7 @@ export default {
     methods: {
         saveBook() {
             this.$store.commit('SAVE_BOOK', this.book);
+           this.$router.push({path:'/myBooks'});
             this.book = {
                 title: '',
                 author: '',
