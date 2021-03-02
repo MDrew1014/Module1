@@ -12,6 +12,15 @@ export default {
 
   get(id) {
     return http.get(`/docs/${id}`)
+  },
+  update(id, doc) {
+    return http.put(`/docs/${id}`, doc);
+  },
+  create(doc) {
+    return http.post(`/docs/`, doc);
+  },
+  delete(id) {
+    return http.delete(`/docs/${id}`);
   }
 
 }

@@ -7,7 +7,10 @@ const http = axios.create({
 export default {
 
   getBoards() {
-    return http.get('/boards');
+    return http.get(`/boards`);
+  },
+  addBoard(board){
+    return http.post(`/boards`,board)
   },
 
   getCards(boardID) {
@@ -19,7 +22,10 @@ export default {
   },
 
   addCard(card) {
-    return http.post('/cards', card);
+    return http.post(`/cards`, card);
+  },
+  deleteBoard(boardID){
+    return http.delete(`boards/${boardID}`);
   },
 
   updateCard(card) {
